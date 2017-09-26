@@ -21,38 +21,38 @@
         <dependency>
             <groupId>com.hp.lft</groupId>
             <artifactId>sdk</artifactId>
-            <version>14.0.0</version>
+            <version>[14.0.0,15.0.0)</version>
         </dependency>
 
         <dependency>
             <groupId>com.hp.lft</groupId>
             <artifactId>sdk</artifactId>
-            <version>14.0.0</version>
+            <version>[14.0.0,15.0.0)</version>
             <classifier>javadoc</classifier>
         </dependency>
 
         <dependency>
             <groupId>com.hp.lft</groupId>
             <artifactId>reportbuilder</artifactId>
-            <version>14.0.0</version>
+            <version>[14.0.0,15.0.0)</version>
         </dependency>
 
         <dependency>
             <groupId>com.hp.lft</groupId>
             <artifactId>report</artifactId>
-            <version>14.0.0</version>
+            <version>[14.0.0,15.0.0)</version>
         </dependency>
 
         <dependency>
             <groupId>com.hp.lft</groupId>
             <artifactId>unittesting</artifactId>
-            <version>14.0.0</version>
+            <version>[14.0.0,15.0.0)</version>
         </dependency>
 
         <dependency>
             <groupId>com.hp.lft</groupId>
             <artifactId>verifications</artifactId>
-            <version>14.0.0</version>
+            <version>[14.0.0,15.0.0)</version>
         </dependency>
     </dependencies>
 
@@ -77,6 +77,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.7.0</version>
                 <configuration>
                     <source>1.7</source>
                     <target>1.7</target>
