@@ -48,7 +48,7 @@ public class LeanFtTest extends UnitTestClassBase {
         Browser browser = BrowserFactory.launch(BrowserType.CHROME);
 
         // Navigate to the starting URL
-        browser.navigate("http://DockerServer:8000/#/");
+        browser.navigate("http://nimbusserver:8000/#/");
 
         // Soeakers or Audio
 /*        browser.describe(WebElement.class, new WebElementDescription.Builder()
