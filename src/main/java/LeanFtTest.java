@@ -46,11 +46,11 @@ public class LeanFtTest extends UnitTestClassBase {
 
         // Launch the browser
         Browser browser = BrowserFactory.launch(BrowserType.CHROME);
-
+        browser.clearCache();
         // Navigate to the starting URL
         browser.navigate("http://nimbusserver:8000/#/");
 
-        // Soeakers or Audio
+        // Speakers or Audio
 /*        browser.describe(WebElement.class, new WebElementDescription.Builder()
                 .tagName("SPAN").innerText("AUDIO").build()).click();
 
