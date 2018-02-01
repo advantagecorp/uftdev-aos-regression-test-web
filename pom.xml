@@ -8,7 +8,7 @@
     <description>LeanFT JUnit Test</description>
 
     <properties>
-        <test.src.dir>src/test/java</test.src.dir>
+        <test.src.dir>src</test.src.dir>
     </properties>
 
     <dependencies>
@@ -72,7 +72,7 @@
             </resource>
         </resources>
 
-        <testSourceDirectory>${test.src.dir}</testSourceDirectory>
+        <testSourceDirectory>src/main/java</testSourceDirectory>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -140,12 +140,4 @@
             </plugins>
         </pluginManagement>
     </build>
-    <profiles>
-        <profile>
-            <id>leanft-test</id>
-            <properties>
-                <test.src.dir>src</test.src.dir>
-            </properties>
-        </profile>
-    </profiles>
 </project>
