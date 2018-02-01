@@ -1,6 +1,6 @@
 import static org.junit.Assert.*;
 
-import com.hp.lft.report.Reporter;
+import com.hp.lft.report.*;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -12,10 +12,15 @@ import com.hp.lft.verifications.*;
 
 import unittesting.*;
 
+import java.awt.image.BufferedImage;
+import java.awt.image.WritableRenderedImage;
+import java.awt.Robot;
 import java.net.URI;
 import java.net.URL;
 
 public class LeanFtTest extends UnitTestClassBase {
+
+    private static Browser browser;
 
     public LeanFtTest() {
         //Change this constructor to private if you supply your own public constructor
@@ -25,15 +30,24 @@ public class LeanFtTest extends UnitTestClassBase {
     public static void setUpBeforeClass() throws Exception {
         instance = new LeanFtTest();
         globalSetup(LeanFtTest.class);
+
+        // Launch the browser
+        browser = BrowserFactory.launch(BrowserType.CHROME);
+
+        browser.navigate("http://nimbusserver:8000");
     }
 
     @AfterClass
     public static void tearDownAfterClass() throws Exception {
         globalTearDown();
+
+        // Close the browser - this is failing:
+        //browser.close();
     }
 
     @Before
     public void setUp() throws Exception {
+
     }
 
     @After
@@ -41,44 +55,9 @@ public class LeanFtTest extends UnitTestClassBase {
     }
 
     @Test
-    public void test() throws GeneralLeanFtException {
-
-
-        // Launch the browser
-        Browser browser = BrowserFactory.launch(BrowserType.CHROME);
-        browser.clearCache();
-        // Navigate to the starting URL
-        browser.navigate("http://nimbusserver:8000/#/");
-
-        // Speakers or Audio
-/*        browser.describe(WebElement.class, new WebElementDescription.Builder()
-                .tagName("SPAN").innerText("AUDIO").build()).click();
-
-        browser.describe(WebElement.class, new WebElementDescription.Builder()
-                .tagName("LI").innerText("SOLD OUT SHOP NOW Bose Soundlink Bluetooth Speaker III $269.99 ").build()).click();
-        browser.describe(Link.class, new LinkDescription.Builder()
-                .tagName("A").innerText("SPEAKERS ").build()).click();
-
-        browser.describe(WebElement.class, new WebElementDescription.Builder()
-                .tagName("LI").innerText("SOLD OUT SHOP NOW Bose SoundLink Wireless Speaker $129.00 ").build()).click();
-        browser.describe(Link.class, new LinkDescription.Builder()
-                .tagName("A").innerText("SPEAKERS ").build()).click();
-
-        browser.describe(WebElement.class, new WebElementDescription.Builder()
-                .tagName("LI").innerText("SOLD OUT SHOP NOW HP Roar Mini Wireless Speaker $44.99 ").build()).click();
-        browser.describe(Link.class, new LinkDescription.Builder()
-                .tagName("A").innerText("SPEAKERS ").build()).click();
-
-        browser.describe(WebElement.class, new WebElementDescription.Builder()
-                .tagName("LI").innerText("SOLD OUT SHOP NOW HP Roar Plus Wireless Speaker $169.99 ").build()).click();
-        browser.describe(Link.class, new LinkDescription.Builder()
-                .tagName("A").innerText("SPEAKERS ").build()).click();
-
-        // Go Home
-        browser.describe(Link.class, new LinkDescription.Builder()
-                .tagName("A").innerText("dvantage DEMO ").build()).click();
-*/
+    public void testTablets() throws GeneralLeanFtException  {
         // Tablets
+
         browser.describe(WebElement.class, new WebElementDescription.Builder()
                 .tagName("SPAN").innerText("TABLETS").build()).click();
 
@@ -100,6 +79,49 @@ public class LeanFtTest extends UnitTestClassBase {
         // Go Home
         browser.describe(Link.class, new LinkDescription.Builder()
                 .tagName("A").innerText("dvantage DEMO ").build()).click();
+    }
+
+    @Test
+    public void testSpeakersLabel() throws GeneralLeanFtException, ReportException {
+
+        //browser.navigate("http://nimbusserver:8000/#/");
+
+        // Get the label of the SPEAKERS object
+        String label_text = browser.describe(Link.class, new LinkDescription.Builder()
+                .cssSelector("div#SpeakersImg > div > span")
+                .tagName("SPAN").build()).getInnerText();
+
+        // Build up a verification for the SPEAKERS text
+        VerificationData verificationData = new VerificationData();
+        verificationData.name = "Check SPEAKERS Label";
+        verificationData.description = "Simply checks if the SPEAKERS label on the home page is equal to 'SPEAKERS'";
+        verificationData.operationName = "content equals (string compare)";
+
+        VerificationParameter verificationParameter1 = new VerificationParameter("Text found", label_text);
+        VerificationParameter verificationParameter2 = new VerificationParameter("Expected ", "SPEAKERS");
+        verificationData.verificationParameters.add(verificationParameter1);
+        verificationData.verificationParameters.add(verificationParameter2);
+        verificationData.image = browser.getSnapshot();
+
+
+        // Compare against expected result "SPEAKERS" and write to the test report
+        Boolean label_says_SPEAKERS = label_text.contentEquals("SPEAKERS");
+        if (label_says_SPEAKERS) {
+            Reporter.reportVerification(Status.Passed, verificationData);
+        } else {
+            Reporter.reportVerification(Status.Failed, verificationData);
+        }
+
+        // Report result to JUnit framework
+        assertTrue("[AOS Homepage] Expected: SPEAKERS, Actual: " + label_text, label_says_SPEAKERS);
+    }
+
+
+
+    @Test
+    public void testLaptops() throws GeneralLeanFtException  {
+
+        //browser.navigate("http://nimbusserver:8000/#/");
 
         // Laptops
         browser.describe(WebElement.class, new WebElementDescription.Builder()
@@ -128,6 +150,12 @@ public class LeanFtTest extends UnitTestClassBase {
         // Go Home
         browser.describe(Link.class, new LinkDescription.Builder()
                 .tagName("A").innerText("dvantage DEMO ").build()).click();
+    }
+
+    @Test
+    public void testMice() throws GeneralLeanFtException  {
+
+       // browser.navigate("http://nimbusserver:8000/#/");
 
         // Mice
         browser.describe(WebElement.class, new WebElementDescription.Builder()
@@ -161,6 +189,12 @@ public class LeanFtTest extends UnitTestClassBase {
         // Go Home
         browser.describe(Link.class, new LinkDescription.Builder()
                 .tagName("A").innerText("dvantage DEMO ").build()).click();
+    }
+
+    @Test
+    public void testHeadphones() throws GeneralLeanFtException  {
+
+        //browser.navigate("http://nimbusserver:8000/#/");
 
         // Headphones
         browser.describe(WebElement.class, new WebElementDescription.Builder()
@@ -189,11 +223,8 @@ public class LeanFtTest extends UnitTestClassBase {
         // Go Home
         browser.describe(Link.class, new LinkDescription.Builder()
                 .tagName("A").innerText("dvantage DEMO ").build()).click();
-
-        // Close Browser
-        browser.close();
-
-
     }
+
+
 
 }
