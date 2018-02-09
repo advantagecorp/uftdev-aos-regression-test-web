@@ -9,6 +9,7 @@
 
     <properties>
         <test.src.dir>src</test.src.dir>
+        <leanft.version>14.2.0</leanft.version>
     </properties>
 
     <dependencies>
@@ -21,38 +22,38 @@
         <dependency>
             <groupId>com.hp.lft</groupId>
             <artifactId>sdk</artifactId>
-            <version>[14.0.0,15.0.0)</version>
+            <version>${leanft.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.hp.lft</groupId>
             <artifactId>sdk</artifactId>
-            <version>[14.0.0,15.0.0)</version>
+            <version>${leanft.version}</version>
             <classifier>javadoc</classifier>
         </dependency>
 
         <dependency>
             <groupId>com.hp.lft</groupId>
             <artifactId>reportbuilder</artifactId>
-            <version>[14.0.0,15.0.0)</version>
+            <version>${leanft.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.hp.lft</groupId>
             <artifactId>report</artifactId>
-            <version>[14.0.0,15.0.0)</version>
+            <version>${leanft.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.hp.lft</groupId>
             <artifactId>unittesting</artifactId>
-            <version>[14.0.0,15.0.0)</version>
+            <version>${leanft.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.hp.lft</groupId>
             <artifactId>verifications</artifactId>
-            <version>[14.0.0,15.0.0)</version>
+            <version>${leanft.version}</version>
         </dependency>
     </dependencies>
 
@@ -65,6 +66,14 @@
     </repositories>
 
     <build>
+        <extensions>
+            <!-- Enabling the use of SSH -->
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-ssh-external</artifactId>
+                <version>1.0-beta-6</version>
+            </extension>
+        </extensions>
         <resources>
             <resource>
                 <directory>${basedir}/src/main/features</directory>
@@ -72,7 +81,7 @@
             </resource>
         </resources>
 
-        <testSourceDirectory>src/main/java</testSourceDirectory>
+        <testSourceDirectory>${test.src.dir}</testSourceDirectory>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -140,4 +149,12 @@
             </plugins>
         </pluginManagement>
     </build>
+    <profiles>
+        <profile>
+            <id>leanft-test</id>
+            <properties>
+                <test.src.dir>src</test.src.dir>
+            </properties>
+        </profile>
+    </profiles>
 </project>
