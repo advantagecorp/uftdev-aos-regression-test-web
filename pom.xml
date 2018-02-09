@@ -72,7 +72,7 @@
             </resource>
         </resources>
 
-        <testSourceDirectory>${test.src.dir}</testSourceDirectory>
+        <testSourceDirectory>src/main/java</testSourceDirectory>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
