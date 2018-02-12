@@ -88,7 +88,7 @@ public class LeanFtTest extends UnitTestClassBase {
 
         // Get the label of the SPEAKERS object
         String label_text = browser.describe(Link.class, new LinkDescription.Builder()
-                .cssSelector("div#SpeakersImg > div > span")
+                .cssSelector("div#speakersImg > div > span")
                 .tagName("SPAN").build()).getInnerText();
 
         // Build up a verification for the SPEAKERS text
