@@ -39,10 +39,12 @@ public class LeanFtTest extends UnitTestClassBase {
 
     @AfterClass
     public static void tearDownAfterClass() throws Exception {
+        // Close the browser - this must occur before the globalTearDown. Otherwise, you will see the following error:
+        // "An Internal problem has occurred, please make sure the LeanFT sdk was properly initialized." - Jason H.
+        browser.close();
+
         globalTearDown();
 
-        // Close the browser - this is failing:
-        //browser.close();
     }
 
     @Before
