@@ -8,7 +8,6 @@
     <description>LeanFT JUnit Test</description>
 
     <properties>
-        <test.src.dir>src</test.src.dir>
         <leanft.version>14.2.0</leanft.version>
     </properties>
 
@@ -25,12 +24,16 @@
             <version>${leanft.version}</version>
         </dependency>
 
+        <!-- Removed the javadoc as they are not deployed as part of the Nimubus
+        platform right now.  they are not used and by having this in the pom, it causes
+        red warnings in the Dependencies which causes bad optics in a demo
         <dependency>
             <groupId>com.hp.lft</groupId>
             <artifactId>sdk</artifactId>
             <version>${leanft.version}</version>
             <classifier>javadoc</classifier>
         </dependency>
+        -->
 
         <dependency>
             <groupId>com.hp.lft</groupId>
@@ -81,7 +84,7 @@
             </resource>
         </resources>
 
-        <testSourceDirectory>${test.src.dir}</testSourceDirectory>
+        <testSourceDirectory>src/main/java</testSourceDirectory>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -138,9 +141,6 @@
                                             <goal>add-source</goal>
                                         </goals>
                                     </pluginExecutionFilter>
-                                    <action>
-                                        <ignore></ignore>
-                                    </action>
                                 </pluginExecution>
                             </pluginExecutions>
                         </lifecycleMappingMetadata>
@@ -149,12 +149,4 @@
             </plugins>
         </pluginManagement>
     </build>
-    <profiles>
-        <profile>
-            <id>leanft-test</id>
-            <properties>
-                <test.src.dir>src</test.src.dir>
-            </properties>
-        </profile>
-    </profiles>
 </project>
