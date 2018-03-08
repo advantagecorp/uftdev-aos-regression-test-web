@@ -27,13 +27,6 @@
 
         <dependency>
             <groupId>com.hp.lft</groupId>
-            <artifactId>sdk</artifactId>
-            <version>${leanft.version}</version>
-            <classifier>javadoc</classifier>
-        </dependency>
-
-        <dependency>
-            <groupId>com.hp.lft</groupId>
             <artifactId>reportbuilder</artifactId>
             <version>${leanft.version}</version>
         </dependency>
