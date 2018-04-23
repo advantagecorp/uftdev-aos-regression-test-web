@@ -9,7 +9,7 @@
 
     <properties>
         <test.src.dir>src</test.src.dir>
-        <leanft.version>14.2.0</leanft.version>
+        <leanft.version>14.3.0</leanft.version>
     </properties>
 
     <dependencies>
