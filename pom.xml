@@ -25,9 +25,6 @@
             <version>${leanft.version}</version>
         </dependency>
 
-        <!-- Removed the javadoc as they are not deployed as part of the Nimubus
-        platform right now.  they are not used and by having this in the pom, it causes
-        red warnings in the Dependencies which causes bad optics in a demo
         <dependency>
             <groupId>com.hp.lft</groupId>
             <artifactId>reportbuilder</artifactId>
