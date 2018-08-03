@@ -33,7 +33,7 @@ public class LeanFtTest extends UnitTestClassBase {
 
         // Launch the browser
         browser = BrowserFactory.launch(BrowserType.CHROME);
-
+        browser.clearCache();
         browser.navigate("http://nimbusserver:8000");
     }
 
