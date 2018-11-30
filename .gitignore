@@ -1,4 +1,4 @@
 *.iml
-.idea
-!.idea/misc.xml
+.idea/*
+!*.idea/misc.xml
 target
