@@ -22,7 +22,7 @@
         <dependency>
             <groupId>com.hp.lft</groupId>
             <artifactId>sdk</artifactId>
-            <version>${leanft.version}</version>
+            <version>LATEST</version>
         </dependency>
 
         <dependency>
