@@ -1,5 +1,4 @@
+.idea
+target
 !*.idea/misc.xml
 !*.idea/modules.xml
-.idea
-*.iml
-target
