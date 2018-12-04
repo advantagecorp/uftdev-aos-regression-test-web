@@ -8,8 +8,9 @@
     <description>LeanFT JUnit Test</description>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <test.src.dir>src</test.src.dir>
-        <leanft.version>14.50.0</leanft.version>
+        <leanft.version>RELEASE</leanft.version>
     </properties>
 
     <dependencies>
@@ -68,10 +69,6 @@
             </extension>
         </extensions>
         <resources>
-            <resource>
-                <directory>${basedir}/src/main/features</directory>
-                <filtering>false</filtering>
-            </resource>
             <resource>
                 <directory>${basedir}/src/main/resources</directory>
                 <filtering>false</filtering>
