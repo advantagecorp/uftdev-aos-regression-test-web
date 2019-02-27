@@ -31,10 +31,32 @@ public class LeanFtTest extends UnitTestClassBase {
         instance = new LeanFtTest();
         globalSetup(LeanFtTest.class);
 
-        // Launch the browser
-        browser = BrowserFactory.launch(BrowserType.CHROME);
-        browser.clearCache();
-        browser.navigate("http://nimbusserver:8000");
+        boolean remote = false;
+//a change
+        BrowserDescription bd = new BrowserDescription();
+        BrowserType chrome = BrowserType.CHROME;
+
+        bd.setType(chrome); //or: bd.set("type", BrowserType.INTERNET_EXPLORER) or: bd.set("type", "INTERNET_EXPLORER")
+        bd.set("version", "LATEST");
+        bd.set("osType", "Windows");
+        bd.set("osVersion", "10");
+        bd.set("testName", "LeanFT Web Test");
+
+        System.out.println(System.getenv(propertyValue));
+
+
+        if (remote) {
+            browser = SrfLab.launchBrowser(bd);
+            browser.navigate("http://advantageonlineshopping.com/#/");
+        }
+        else {
+            browser = BrowserFactory.launch(chrome);
+            browser.navigate("http://nimbusserver.aos.com:8000");
+//            browser.navigate("http://advantageonlineshopping.com/#/");
+        }
+
+
+
     }
 
     @AfterClass
@@ -86,8 +108,6 @@ public class LeanFtTest extends UnitTestClassBase {
     @Test
     public void testSpeakersLabel() throws GeneralLeanFtException, ReportException {
 
-        //browser.navigate("http://nimbusserver:8000/#/");
-
         // Get the label of the SPEAKERS object
         String label_text = browser.describe(Link.class, new LinkDescription.Builder()
                 .cssSelector("div#speakersImg > div > span")
@@ -118,13 +138,8 @@ public class LeanFtTest extends UnitTestClassBase {
         assertTrue("[AOS Homepage] Expected: SPEAKERS, Actual: " + label_text, label_says_SPEAKERS);
     }
 
-
-
     @Test
     public void testLaptops() throws GeneralLeanFtException  {
-
-        //browser.navigate("http://nimbusserver:8000/#/");
-
         // Laptops
         browser.describe(WebElement.class, new WebElementDescription.Builder()
                 .tagName("SPAN").innerText("LAPTOPS").build()).click();
@@ -156,8 +171,6 @@ public class LeanFtTest extends UnitTestClassBase {
 
     @Test
     public void testMice() throws GeneralLeanFtException  {
-
-       // browser.navigate("http://nimbusserver:8000/#/");
 
         // Mice
         browser.describe(WebElement.class, new WebElementDescription.Builder()
@@ -195,8 +208,6 @@ public class LeanFtTest extends UnitTestClassBase {
 
     @Test
     public void testHeadphones() throws GeneralLeanFtException  {
-
-        //browser.navigate("http://nimbusserver:8000/#/");
 
         // Headphones
         browser.describe(WebElement.class, new WebElementDescription.Builder()
