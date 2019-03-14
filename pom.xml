@@ -140,8 +140,7 @@
                 <version>3.0.0-M3</version>
                 <configuration>
                     <systemPropertyVariables>
-                        <propertyName>propertyValue</propertyName>
-                        <buildDirectory>${project.build.directory}</buildDirectory>
+                        <run.srf>false</run.srf>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>

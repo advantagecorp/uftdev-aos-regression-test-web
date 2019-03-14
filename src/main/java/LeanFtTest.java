@@ -31,31 +31,26 @@ public class LeanFtTest extends UnitTestClassBase {
         instance = new LeanFtTest();
         globalSetup(LeanFtTest.class);
 
-        boolean remote = false;
-//a change
+        boolean runsrf = Boolean.parseBoolean(System.getProperty("run.srf"));
         BrowserDescription bd = new BrowserDescription();
         BrowserType chrome = BrowserType.CHROME;
 
-        bd.setType(chrome); //or: bd.set("type", BrowserType.INTERNET_EXPLORER) or: bd.set("type", "INTERNET_EXPLORER")
-        bd.set("version", "LATEST");
-        bd.set("osType", "Windows");
-        bd.set("osVersion", "10");
-        bd.set("testName", "LeanFT Web Test");
-
-        System.out.println(System.getenv(propertyValue));
-
-
-        if (remote) {
+        if (runsrf) {
+            System.out.println("Running test on Storm Runner Functional (run.srf=true)");
+            bd.setType(chrome); //or: bd.set("type", BrowserType.INTERNET_EXPLORER) or: bd.set("type", "INTERNET_EXPLORER")
+            bd.set("version", "LATEST");
+            bd.set("osType", "Windows");
+            bd.set("osVersion", "10");
+            bd.set("testName", "LeanFT Web Test");
             browser = SrfLab.launchBrowser(bd);
             browser.navigate("http://advantageonlineshopping.com/#/");
         }
         else {
+            System.out.println("Running test locally (run.srf=false)");
             browser = BrowserFactory.launch(chrome);
             browser.navigate("http://nimbusserver.aos.com:8000");
 //            browser.navigate("http://advantageonlineshopping.com/#/");
         }
-
-
 
     }
 
