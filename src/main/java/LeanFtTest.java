@@ -35,20 +35,28 @@ public class LeanFtTest extends UnitTestClassBase {
         BrowserDescription bd = new BrowserDescription();
         BrowserType chrome = BrowserType.CHROME;
 
+	/*
+	  Note: you should not set the value of the runsrf variable in this source code.
+	  Instead, you should set it in the pom.xml file
+	  <systemPropertyVariables>
+	      <run.srf>true</run.srf> // or false
+	  </systemPropertyVariables>
+	*/
+	
         if (runsrf) {
             System.out.println("Running test on Storm Runner Functional (run.srf=true)");
-            bd.setType(chrome); //or: bd.set("type", BrowserType.INTERNET_EXPLORER) or: bd.set("type", "INTERNET_EXPLORER")
-            bd.set("version", "LATEST");
+            bd.set("type", chrome);//or: bd.set("type", BrowserType.INTERNET_EXPLORER) or: bd.set("type", "INTERNET_EXPLORER")
+            bd.set("version", "latest");
             bd.set("osType", "Windows");
             bd.set("osVersion", "10");
             bd.set("testName", "LeanFT Web Test");
             browser = SrfLab.launchBrowser(bd);
-            browser.navigate("http://advantageonlineshopping.com/#/");
+            browser.navigate("http://advantageonlineshopping.com");
         }
         else {
             System.out.println("Running test locally (run.srf=false)");
             browser = BrowserFactory.launch(chrome);
-            browser.navigate("http://nimbusserver.aos.com:8000");
+            browser.navigate("http://nimbusserver.aos.com");
 //            browser.navigate("http://advantageonlineshopping.com/#/");
         }
 
