@@ -51,11 +51,13 @@ public class LeanFtTest extends UnitTestClassBase {
             bd.set("osVersion", "10");
             bd.set("testName", "LeanFT Web Test");
             browser = SrfLab.launchBrowser(bd);
+            browser.clearCache();
             browser.navigate("http://advantageonlineshopping.com");
         }
         else {
             System.out.println("Running test locally (run.srf=false)");
             browser = BrowserFactory.launch(chrome);
+            browser.clearCache();
             browser.navigate("http://nimbusserver.aos.com");
 //            browser.navigate("http://advantageonlineshopping.com/#/");
         }
@@ -74,7 +76,7 @@ public class LeanFtTest extends UnitTestClassBase {
 
     @Before
     public void setUp() throws Exception {
-
+        browser.clearCache();
     }
 
     @After
