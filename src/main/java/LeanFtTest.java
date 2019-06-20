@@ -58,7 +58,7 @@ public class LeanFtTest extends UnitTestClassBase {
             System.out.println("Running test locally (run.srf=false)");
             browser = BrowserFactory.launch(chrome);
             browser.clearCache();
-            browser.navigate("http://nimbusserver.aos.com");
+            browser.navigate("http://nimbusserver.aos.com:8000");
 //            browser.navigate("http://advantageonlineshopping.com/#/");
         }
 
