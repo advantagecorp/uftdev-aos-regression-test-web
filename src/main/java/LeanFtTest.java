@@ -35,7 +35,19 @@ public class LeanFtTest extends UnitTestClassBase {
         BrowserType chrome = BrowserType.CHROME;
 
         browser = BrowserFactory.launch(chrome);
-        browser.clearCache();
+         try
+        {
+            browser.clearCache();
+        }
+        catch (GeneralReplayException e){
+            if ( e.getMessage() != "Browser not valid anymore"){
+                throw e;
+            }
+            System.out.println("Browser has become invalid, relaunching");
+            browser = BrowserFactory.launch(chrome);
+            browser.clearCache();
+        }
+        
         browser.navigate("http://nimbusserver.aos.com:8000");
 //      browser.navigate("http://advantageonlineshopping.com/#/");
     }
@@ -44,7 +56,15 @@ public class LeanFtTest extends UnitTestClassBase {
     public static void tearDownAfterClass() throws Exception {
         // Close the browser - this must occur before the globalTearDown. Otherwise, you will see the following error:
         // "An Internal problem has occurred, please make sure the LeanFT sdk was properly initialized." - Jason H.
-        browser.close();
+        try {
+            browser.close();
+        }
+        catch (GeneralReplayException e){
+            if ( e.getMessage() != "Browser not valid anymore"){
+                throw e;
+            }
+            System.out.println("Browser no longer valid, cannot close");
+        }
 
         globalTearDown();
 
