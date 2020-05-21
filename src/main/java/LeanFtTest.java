@@ -40,7 +40,7 @@ public class LeanFtTest extends UnitTestClassBase {
             browser.clearCache();
         }
         catch (GeneralReplayException e){
-            if ( e.getMessage() != "Browser not valid anymore"){
+            if ( !e.getMessage().equals("Browser not valid anymore") ){
                 throw e;
             }
             System.out.println("Browser has become invalid, relaunching");
@@ -60,7 +60,7 @@ public class LeanFtTest extends UnitTestClassBase {
             browser.close();
         }
         catch (GeneralReplayException e){
-            if ( e.getMessage() != "Browser not valid anymore"){
+            if ( !e.getMessage().equals("Browser not valid anymore") ){
                 throw e;
             }
             System.out.println("Browser no longer valid, cannot close");
