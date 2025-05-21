@@ -48,7 +48,7 @@ public class LeanFtTest extends UnitTestClassBase {
             browser.clearCache();
         }
         
-        browser.navigate("http://nimbusserver.aos.com:8000");
+        browser.navigate("http://localhost:8000");
 //      browser.navigate("http://advantageonlineshopping.com/#/");
     }
 
