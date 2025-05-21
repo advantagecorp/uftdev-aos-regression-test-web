@@ -17,7 +17,7 @@ public class UnitTestClassBase extends UnitTestBase {
             instance = testClass.newInstance();
         instance.classSetup();
     }
-
+    //this is a comment
     @Before
     public void beforeTest() throws Exception {
         testSetup();
